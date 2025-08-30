@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devo - Your Smart Store</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Devo</h1>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Devo – Your Smart Store</h1>
+                <p class="hero-subtitle">Discover amazing products with smart shopping experience</p>
+                <button class="cta-button">Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Sidebar Filters -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <div class="filter-group">
+                        <label class="filter-item">
+                            <input type="checkbox" name="category" value="electronics">
+                            <span class="checkmark"></span>
+                            Electronics
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" name="category" value="clothing">
+                            <span class="checkmark"></span>
+                            Clothing
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" name="category" value="home">
+                            <span class="checkmark"></span>
+                            Home & Garden
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" name="category" value="books">
+                            <span class="checkmark"></span>
+                            Books
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" name="category" value="sports">
+                            <span class="checkmark"></span>
+                            Sports
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="price-range">
+                        <input type="range" id="price-range" min="0" max="1000" value="500" class="range-slider">
+                        <div class="price-display">
+                            <span>$0</span>
+                            <span id="price-value">$500</span>
+                            <span>$1000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Sort By</h3>
+                    <select class="sort-select">
+                        <option value="popular">Most Popular</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </aside>
+
+            <!-- Products Grid -->
+            <section class="products-section" id="products">
+                <div class="products-header">
+                    <h2>Our Products</h2>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="products-grid">
+                    <!-- Product Card 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="product-badge">New</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 1</h3>
+                            <p class="product-description">High-quality product with amazing features</p>
+                            <div class="product-price">$99.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="product-badge sale">Sale</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 2</h3>
+                            <p class="product-description">Innovative design meets functionality</p>
+                            <div class="product-price">
+                                <span class="original-price">$149.99</span>
+                                <span class="sale-price">$119.99</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 3</h3>
+                            <p class="product-description">Premium quality for discerning customers</p>
+                            <div class="product-price">$199.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="product-badge">Hot</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 4</h3>
+                            <p class="product-description">Trending product with great reviews</p>
+                            <div class="product-price">$79.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 5</h3>
+                            <p class="product-description">Essential item for everyday use</p>
+                            <div class="product-price">$59.99</div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="placeholder-image">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="product-badge sale">Sale</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Product 6</h3>
+                            <p class="product-description">Limited edition with special features</p>
+                            <div class="product-price">
+                                <span class="original-price">$299.99</span>
+                                <span class="sale-price">$249.99</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Devo</h3>
+                    <p>Your smart store for amazing products</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@devo.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Devo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
