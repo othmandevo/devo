@@ -2,257 +2,325 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devo - Your Smart Store</title>
-    <link rel="stylesheet" href="stylee.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="description" content="Devo Store - Your Digital Marketplace for software, design, games, and tools">
+    <meta name="keywords" content="digital marketplace, software, design, games, tools, e-commerce">
+    <meta name="author" content="Devo Store">
+    <title>Devo Store - Your Digital Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- EmailJS for contact form functionality -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
-<body class="light-mode">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <h1>Devo</h1>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1 class="logo">Devo Store</h1>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#products" class="nav-link">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#categories" class="nav-link">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <svg class="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path class="sun-icon" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path class="moon-icon" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="cart-button" id="cartButton" aria-label="Shopping cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#categories" class="nav-link">Categories</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
-            <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Welcome to Devo – Your Smart Store</h1>
-                <p class="hero-subtitle">Discover amazing products with smart shopping experience</p>
-                <button class="cta-button">Shop Now</button>
-            </div>
-        </div>
-    </section>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Sidebar Filters -->
-            <aside class="sidebar">
-                <div class="filter-section">
-                    <h3>Categories</h3>
-                    <div class="filter-group">
-                        <label class="filter-item">
-                            <input type="checkbox" name="category" value="electronics">
-                            <span class="checkmark"></span>
-                            Electronics
-                        </label>
-                        <label class="filter-item">
-                            <input type="checkbox" name="category" value="clothing">
-                            <span class="checkmark"></span>
-                            Clothing
-                        </label>
-                        <label class="filter-item">
-                            <input type="checkbox" name="category" value="home">
-                            <span class="checkmark"></span>
-                            Home & Garden
-                        </label>
-                        <label class="filter-item">
-                            <input type="checkbox" name="category" value="books">
-                            <span class="checkmark"></span>
-                            Books
-                        </label>
-                        <label class="filter-item">
-                            <input type="checkbox" name="category" value="sports">
-                            <span class="checkmark"></span>
-                            Sports
-                        </label>
+    <main class="main">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Welcome to Devo Store</h2>
+                    <p class="hero-subtitle">Your Digital Marketplace</p>
+                    <p class="hero-description">
+                        Discover premium digital products, from cutting-edge software to creative design tools. 
+                        Everything you need to enhance your digital experience in one place.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#products" class="btn btn-primary">Explore Products</a>
+                        <a href="#categories" class="btn btn-secondary">Browse Categories</a>
                     </div>
                 </div>
-
-                <div class="filter-section">
-                    <h3>Price Range</h3>
-                    <div class="price-range">
-                        <input type="range" id="price-range" min="0" max="1000" value="500" class="range-slider">
-                        <div class="price-display">
-                            <span>$0</span>
-                            <span id="price-value">$500</span>
-                            <span>$1000</span>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="card-placeholder">
+                                                         <div class="placeholder-icon">
+                                 <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                 </svg>
+                             </div>
+                            <h3>Digital Excellence</h3>
+                            <p>Premium digital products for modern creators</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="filter-section">
-                    <h3>Sort By</h3>
-                    <select class="sort-select">
-                        <option value="popular">Most Popular</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="newest">Newest First</option>
-                    </select>
+        <!-- Categories Section -->
+        <section id="categories" class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Categories</h2>
+                    <p class="section-subtitle">Find exactly what you're looking for</p>
                 </div>
-            </aside>
-
-            <!-- Products Grid -->
-            <section class="products-section" id="products">
-                <div class="products-header">
-                    <h2>Our Products</h2>
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="grid">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="view-btn" data-view="list">
-                            <i class="fas fa-list"></i>
-                        </button>
+                
+                <div class="categories-grid">
+                    <div class="category-card" data-category="software">
+                                                 <div class="category-icon">
+                             <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                             </svg>
+                         </div>
+                        <h3 class="category-title">Software</h3>
+                        <p class="category-description">Professional applications and utilities</p>
+                        <span class="category-count">24 products</span>
                     </div>
-                </div>
-
-                <div class="products-grid" id="products-grid">
-                    <!-- Product Card 1 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="product-badge">New</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 1</h3>
-                            <p class="product-description">High-quality product with amazing features</p>
-                            <div class="product-price">$99.99</div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                    
+                    <div class="category-card" data-category="design">
+                                                 <div class="category-icon">
+                             <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                 <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M15 7l3-3m0 0l-3-3m3 3H9"/>
+                             </svg>
+                         </div>
+                        <h3 class="category-title">Design</h3>
+                        <p class="category-description">Creative tools and resources</p>
+                        <span class="category-count">18 products</span>
                     </div>
-
-                    <!-- Product Card 2 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="product-badge sale">Sale</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 2</h3>
-                            <p class="product-description">Innovative design meets functionality</p>
-                            <div class="product-price">
-                                <span class="original-price">$149.99</span>
-                                <span class="sale-price">$119.99</span>
-                            </div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                    
+                    <div class="category-card" data-category="games">
+                                                 <div class="category-icon">
+                             <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                 <path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                             </svg>
+                         </div>
+                        <h3 class="category-title">Games</h3>
+                        <p class="category-description">Entertainment and gaming experiences</p>
+                        <span class="category-count">32 products</span>
                     </div>
-
-                    <!-- Product Card 3 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
+                    
+                    <div class="category-card" data-category="tools">
+                        <div class="category-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 3</h3>
-                            <p class="product-description">Premium quality for discerning customers</p>
-                            <div class="product-price">$199.99</div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="product-badge">Hot</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 4</h3>
-                            <p class="product-description">Trending product with great reviews</p>
-                            <div class="product-price">$79.99</div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 5 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 5</h3>
-                            <p class="product-description">Essential item for everyday use</p>
-                            <div class="product-price">$59.99</div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 6 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <div class="placeholder-image">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="product-badge sale">Sale</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Smart Product 6</h3>
-                            <p class="product-description">Limited edition with special features</p>
-                            <div class="product-price">
-                                <span class="original-price">$299.99</span>
-                                <span class="sale-price">$249.99</span>
-                            </div>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                        <h3 class="category-title">Tools</h3>
+                        <p class="category-description">Productivity and development tools</p>
+                        <span class="category-count">15 products</span>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Products</h2>
+                    <p class="section-subtitle">Handpicked digital products for creators</p>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">We'd love to hear from you. All messages will be sent directly to othman.devo@gmail.com</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>hello@devostore.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Phone</h3>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Location</h3>
+                                <p>San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpzgwqzg" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message to othman.devo@gmail.com</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary cart-checkout" id="cartCheckout">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
+        <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Devo</h3>
-                    <p>Your smart store for amazing products</p>
+                <div class="footer-brand">
+                    <h3 class="footer-logo">Devo Store</h3>
+                    <p>Your Digital Marketplace</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#categories">Categories</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: info@devo.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="#categories">Categories</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Categories</h4>
+                        <ul>
+                            <li><a href="#categories" data-category="software">Software</a></li>
+                            <li><a href="#categories" data-category="design">Design</a></li>
+                            <li><a href="#categories" data-category="games">Games</a></li>
+                            <li><a href="#categories" data-category="tools">Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li><a href="#contact">Help Center</a></li>
+                            <li><a href="#contact">Privacy Policy</a></li>
+                            <li><a href="#contact">Terms of Service</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Devo. All rights reserved.</p>
+                <p>&copy; 2025 Devo Store. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
