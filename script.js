@@ -7,19 +7,21 @@ class DevoStore {
         this.theme = localStorage.getItem('theme') || 'light';
         this.language = localStorage.getItem('language') || 'en';
         this.translations = this.getTranslations();
+        this.resizeTimeout = null;
         this.init();
     }
 
     init() {
         this.setupEventListeners();
         this.loadProducts();
-        this.applyTheme();
+        this.updateThemeUI(); // Only update UI, don't change theme
         this.applyLanguage();
         this.updateLanguageUI();
         this.updateCartCount();
         this.setupSmoothScrolling();
         this.loadCartFromStorage();
         this.updateActiveNavigation(); // Set initial active navigation
+        this.setupResizeHandler();
     }
 
     setupEventListeners() {
@@ -48,12 +50,13 @@ class DevoStore {
         }
 
         // Close cart when clicking outside
-        document.addEventListener('click', (e) => {
-            if (cartSidebar && !cartSidebar.contains(e.target) && 
-                !cartToggle.contains(e.target) && cartSidebar.classList.contains('open')) {
-                this.closeCart();
-            }
-        });
+        if (cartSidebar) {
+            cartSidebar.addEventListener('click', (e) => {
+                if (e.target === cartSidebar) {
+                    this.closeCart();
+                }
+            });
+        }
 
         // Mobile menu
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -94,11 +97,7 @@ class DevoStore {
             });
         });
 
-        // Contact form
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => this.handleContactForm(e));
-        }
+        // Contact form functionality removed - using Telegram contact only
 
         // Language dropdown functionality
         const languageToggle = document.getElementById('languageToggle');
@@ -128,11 +127,11 @@ class DevoStore {
             });
         }
 
-                            // Telegram contact functionality
-                    const telegramContact = document.querySelector('.contact-item:has(.telegram-icon)');
-                    if (telegramContact) {
-                        telegramContact.addEventListener('click', () => this.handleTelegramContact());
-                    }
+        // Telegram contact functionality
+        const telegramContact = document.querySelector('.telegram-contact');
+        if (telegramContact) {
+            telegramContact.addEventListener('click', () => this.handleTelegramContact());
+        }
 
         // Footer filter links
         const footerFilterLinks = document.querySelectorAll('.footer-section a[data-filter]');
@@ -173,24 +172,7 @@ class DevoStore {
             });
         });
 
-        // Hero cards
-        const heroCards = document.querySelectorAll('.hero-card');
-        heroCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const category = card.dataset.category;
-                this.filterProducts(category);
-                
-                // Update active filter button
-                filterBtns.forEach(b => b.classList.remove('active'));
-                const activeFilterBtn = document.querySelector(`[data-filter="${category}"]`);
-                if (activeFilterBtn) {
-                    activeFilterBtn.classList.add('active');
-                }
-                
-                // Scroll to products section
-                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-            });
-        });
+        // Hero cards functionality removed - cards were removed from HTML
 
         // Scroll-based navigation highlighting
         window.addEventListener('scroll', () => this.updateActiveNavigation());
@@ -516,10 +498,10 @@ class DevoStore {
             const isOpen = cartSidebar.classList.contains('open');
             if (isOpen) {
                 cartSidebar.classList.remove('open');
-                mainContent.classList.remove('cart-open');
+                mainContent.classList.remove('cart-blurred');
             } else {
                 cartSidebar.classList.add('open');
-                mainContent.classList.add('cart-open');
+                mainContent.classList.add('cart-blurred');
             }
         }
     }
@@ -529,7 +511,7 @@ class DevoStore {
         const mainContent = document.querySelector('.main-content');
         if (cartSidebar) {
             cartSidebar.classList.remove('open');
-            mainContent.classList.remove('cart-open');
+            mainContent.classList.remove('cart-blurred');
         }
     }
 
@@ -539,26 +521,41 @@ class DevoStore {
             return;
         }
 
-        this.showLoading();
-        
-        // Simulate checkout process
-        setTimeout(() => {
-            this.hideLoading();
-            this.showToast(this.translations[this.language]?.orderPlacedSuccess || 'Order placed successfully! Thank you for your purchase.', 'success');
-            this.cart = [];
-            this.updateCart();
-            this.closeCart();
-        }, 2000);
+        // Show message that purchase is not currently available
+        this.showToast('Purchase functionality is not currently available. Please contact us via Telegram for orders.', 'info');
+        this.closeCart();
     }
 
     toggleTheme() {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         this.applyTheme();
-        localStorage.setItem('theme', this.theme);
     }
 
     applyTheme() {
-        document.documentElement.setAttribute('data-theme', this.theme);
+        // Only apply theme if it's different from current
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme !== this.theme) {
+            document.documentElement.setAttribute('data-theme', this.theme);
+        }
+        localStorage.setItem('theme', this.theme);
+        this.updateThemeUI();
+    }
+
+    updateThemeUI() {
+        // Update theme toggle button
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            const sunIcon = themeToggle.querySelector('.sun-icon');
+            const moonIcon = themeToggle.querySelector('.moon-icon');
+            
+            if (this.theme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
     }
 
     setupSmoothScrolling() {
@@ -1433,6 +1430,12 @@ class DevoStore {
         
         document.body.appendChild(modal);
         
+        // Add blur effect to background
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.classList.add('blurred');
+        }
+        
         // Add event listeners
         this.setupProductDetailEvents(modal, product);
         
@@ -1529,6 +1532,12 @@ class DevoStore {
             modal.classList.remove('show');
             setTimeout(() => modal.remove(), 300);
         }
+        
+        // Remove blur effect from background
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.classList.remove('blurred');
+        }
     }
 
     updateProductQuantity(change) {
@@ -1569,6 +1578,115 @@ class DevoStore {
             const icons = ['design', 'software', 'games', 'tools'];
             mainImage.innerHTML = this.getProductIcon(icons[index]);
         }
+    }
+
+    // Dynamic Resize Handler
+    setupResizeHandler() {
+        window.addEventListener('resize', () => {
+            // Debounce resize events for better performance
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 150);
+        });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                this.handleResize();
+            }, 500);
+        });
+    }
+
+    handleResize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        // Update CSS custom properties for fluid design
+        document.documentElement.style.setProperty('--viewport-width', `${width}px`);
+        document.documentElement.style.setProperty('--viewport-height', `${height}px`);
+        
+        // Recalculate grid layouts
+        this.updateGridLayouts();
+        
+        // Update mobile menu state
+        this.updateMobileMenuState();
+        
+        // Update cart sidebar position
+        this.updateCartPosition();
+        
+        // Trigger layout recalculation
+        this.forceLayoutRecalculation();
+    }
+
+    updateGridLayouts() {
+        const width = window.innerWidth;
+        const productsGrid = document.getElementById('productsGrid');
+        const categoriesGrid = document.querySelector('.categories-grid');
+        
+        if (productsGrid) {
+            // Update products grid based on screen width
+            if (width >= 1400) {
+                productsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            } else if (width >= 1024) {
+                productsGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            } else if (width >= 768) {
+                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                productsGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+        
+        if (categoriesGrid) {
+            // Update categories grid based on screen width
+            if (width >= 1400) {
+                categoriesGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            } else if (width >= 1024) {
+                categoriesGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            } else if (width >= 768) {
+                categoriesGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                categoriesGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+    }
+
+    updateMobileMenuState() {
+        const width = window.innerWidth;
+        const navMenu = document.querySelector('.nav-menu');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        
+        // Auto-close mobile menu on larger screens
+        if (width > 768 && navMenu && navMenu.classList.contains('open')) {
+            navMenu.classList.remove('open');
+            if (mobileMenuToggle) {
+                mobileMenuToggle.classList.remove('active');
+            }
+        }
+    }
+
+    updateCartPosition() {
+        const width = window.innerWidth;
+        const cartSidebar = document.getElementById('cartSidebar');
+        const mainContent = document.querySelector('.main-content');
+        
+        if (cartSidebar && mainContent) {
+            // On mobile, cart overlays; on desktop, it pushes content
+            if (width <= 768) {
+                mainContent.classList.remove('cart-open');
+            }
+        }
+    }
+
+    forceLayoutRecalculation() {
+        // Force browser to recalculate layout
+        document.body.offsetHeight;
+        
+        // Update any sticky elements
+        const stickyElements = document.querySelectorAll('.sticky, [style*="position: sticky"]');
+        stickyElements.forEach(element => {
+            element.style.transform = 'translateZ(0)';
+        });
     }
 }
 
