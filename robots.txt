@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://othmandevo.github.io/devo/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow any potential admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /backend/
+
+# Allow important pages
+Allow: /index.html
+Allow: /style.css
+Allow: /script.js

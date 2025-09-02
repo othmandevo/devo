@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Devo Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-detail{max-width:1000px;margin:40px auto;padding:20px}
+        .detail-card{background:var(--card-bg,#fff);border:1px solid var(--border,#e5e7eb);border-radius:16px;padding:24px}
+        .detail-header{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+        .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .stat{display:flex;gap:8px;align-items:center;color:var(--text-secondary)}
+        .feature-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+        .chip{padding:6px 10px;border-radius:9999px;background:var(--chip-bg,#f1f5f9);font-size:.85rem}
+        .actions{display:flex;gap:12px;margin-top:16px}
+        .btn{padding:10px 14px;border:0;border-radius:8px;cursor:pointer}
+        .btn-primary{background:#007aff;color:#fff}
+        .btn-secondary{background:#e5e7eb}
+    </style>
+    <script defer src="product.js"></script>
+    <script defer src="script.js"></script>
+    <!-- Reuse store for currency formatting if needed -->
+</head>
+<body>
+    <main class="product-detail">
+        <div class="detail-card" id="detailCard" hidden>
+            <div class="detail-header">
+                <div class="icon-container" id="detailIcon"></div>
+                <div>
+                    <h2 id="detailTitle"></h2>
+                    <div class="stat"><span id="detailRating"></span> • <span id="detailDownloads"></span></div>
+                </div>
+            </div>
+            <div class="detail-grid">
+                <div>
+                    <p id="detailDescription"></p>
+                    <div class="feature-list" id="detailFeatures"></div>
+                </div>
+                <div>
+                    <div class="stat"><strong>Price:</strong>&nbsp;<span id="detailPrice"></span></div>
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="history.back()">Back</button>
+                        <button class="btn btn-primary" id="detailPrimary"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+

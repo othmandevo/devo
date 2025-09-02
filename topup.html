@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up - Devo Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .topup-container{max-width:900px;margin:40px auto;padding:20px}
+        .topup-card{background:var(--card-bg,#fff);border:1px solid var(--border,#e5e7eb);border-radius:12px;padding:24px}
+        .topup-header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+        .topup-header img{width:64px;height:64px;border-radius:12px;object-fit:cover}
+        .topup-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .form-group{display:flex;flex-direction:column;gap:6px}
+        .form-group input,.form-group select{padding:10px 12px;border:1px solid var(--border,#e5e7eb);border-radius:8px;background:var(--input-bg,#fff)}
+        .denoms{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+        .denom{border:1px solid var(--border,#e5e7eb);border-radius:10px;padding:10px;text-align:center;cursor:pointer}
+        .denom.active{border-color:#007aff;box-shadow:0 0 0 2px rgba(0,122,255,.15)}
+        .actions{display:flex;gap:12px;margin-top:16px}
+        .btn{padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
+        .btn-primary{background:#007aff;color:#fff}
+        .btn-secondary{background:#e5e7eb}
+        .helper{color:#6b7280;font-size:.9rem}
+    </style>
+</head>
+<body>
+    <main class="topup-container">
+        <div class="topup-card">
+            <div class="topup-header">
+                <img id="gameImage" alt="Game">
+                <div>
+                    <h2 id="gameTitle">Top Up</h2>
+                    <div class="helper" id="gameSubtitle"></div>
+                </div>
+            </div>
+            <div class="topup-grid">
+                <div>
+                    <div class="form-group">
+                        <label id="idLabel">Player ID</label>
+                        <input id="playerId" placeholder="Enter Player ID" />
+                    </div>
+                    <div class="form-group" id="zoneWrapper" style="display:none">
+                        <label>Zone ID</label>
+                        <input id="zoneId" placeholder="Enter Zone ID" />
+                    </div>
+                    <div class="form-group">
+                        <label id="denomLabel">Select Package</label>
+                        <div class="denoms" id="denoms"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select id="payment">
+                            <option value="vodafone">Vodafone Cash</option>
+                            <option value="orange">Orange Cash</option>
+                            <option value="etisalat">Etisalat Cash</option>
+                            <option value="visa">Visa</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input id="email" type="email" placeholder="you@example.com" />
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="history.back()">Back</button>
+                        <button class="btn btn-primary" id="payBtn">Proceed to Pay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="topup.js"></script>
+</body>
+</html>
+
